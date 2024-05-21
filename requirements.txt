@@ -4,3 +4,9 @@ matplotlib
 seaborn
 scikit-learn
 openpyxl
+psycopg2
+selenium
+beautifulsoup4
+requests
+psycopg2-binary
+
