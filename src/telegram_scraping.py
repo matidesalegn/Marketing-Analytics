@@ -1,6 +1,5 @@
 from telethon.sync import TelegramClient
 from telethon.tl.functions.messages import GetHistoryRequest
-from telethon.tl.types import PeerChannel
 import pandas as pd
 
 api_id = '28036061'
@@ -13,7 +12,20 @@ client.start(phone=phone)
 channel_username = 'tikvahethiopia'
 channel = client.get_entity(channel_username)
 
-def get_all_messages(client, channel):
+keywords = [
+    '#bank', '#CBE', '#BOA', '#GBE', '#CBO', '#ABAY', '#ABSC', '#ABYS', '#DASH', '#ENAT', '#BUNA',
+    '#Commercial Bank of Ethiopia', '#bankofabyssinia', '#GlobalBankEthiopia', '#BoAEth', '#Coopbank', '#berhanbank'
+]
+
+def contains_keyword(message, keywords):
+    if message and 'message' in message:
+        message_text = message['message']
+        for keyword in keywords:
+            if keyword.lower() in message_text.lower():
+                return True
+    return False
+
+def get_all_messages(client, channel, keywords):
     all_messages = []
     offset_id = 0
     limit = 100
@@ -35,7 +47,8 @@ def get_all_messages(client, channel):
             break
         messages = history.messages
         for message in messages:
-            all_messages.append(message.to_dict())
+            if contains_keyword(message.to_dict(), keywords):
+                all_messages.append(message.to_dict())
         offset_id = messages[-1].id
         total_messages = len(all_messages)
         if total_count_limit and total_messages >= total_count_limit:
@@ -43,7 +56,7 @@ def get_all_messages(client, channel):
 
     return all_messages
 
-messages = get_all_messages(client, channel)
+messages = get_all_messages(client, channel, keywords)
 
 # Convert to DataFrame
 df = pd.DataFrame(messages)
