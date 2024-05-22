@@ -10,4 +10,5 @@ beautifulsoup4
 requests
 psycopg2-binary
 telethon
+google-play-scraper
 
