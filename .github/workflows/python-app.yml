@@ -1,6 +1,13 @@
 name: Python application
 
-on: [push, pull_request]
+# Triggers for the workflow
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
