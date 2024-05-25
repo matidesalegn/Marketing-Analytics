@@ -1,0 +1,32 @@
+raw_data:
+  type: pandas.CSVDataSet
+  filepath: data/boa-telegram-channel-subscriber.csv
+  load_args:
+    sep: ","
+  save_args:
+    index: false
+
+  # Additional datasets
+  filtered_telegram_data:
+    type: pandas.CSVDataSet
+    filepath: data/filtered_telegram_data.csv
+    load_args:
+      sep: ","
+    save_args:
+      index: false
+
+  google_play_reviews:
+    type: pandas.CSVDataSet
+    filepath: data/google_play_reviews.csv
+    load_args:
+      sep: ","
+    save_args:
+      index: false
+
+  google_play_downloads:
+    type: pandas.CSVDataSet
+    filepath: data/google_play_downloads.csv
+    load_args:
+      sep: ","
+    save_args:
+      index: false
