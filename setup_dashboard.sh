@@ -1,5 +1,4 @@
 # !/bin/bash
-
 set -e
 
 # Function to setup Redash
