@@ -1,0 +1,32 @@
+version: '3.6'
+
+services:
+  server:
+    image: redash/redash:latest
+    container_name: redash
+    environment:
+      REDASH_COOKIE_SECRET: some_secure_random_string
+      REDASH_SECRET_KEY: another_secure_random_string
+      REDASH_DATABASE_URL: 'postgresql://postgres:password@postgres:5432/redash'
+      REDASH_REDIS_URL: 'redis://redis:6379/0'
+    ports:
+      - "5000:5000"
+    depends_on:
+      - postgres
+      - redis
+
+  postgres:
+    image: postgres:12
+    container_name: redash_postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Mati@1993
+      POSTGRES_DB: redash
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:6.0-alpine
+    container_name: redash_redis
+    ports:
+      - "6379:6379"

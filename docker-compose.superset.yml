@@ -1,0 +1,37 @@
+version: '3.6'
+
+services:
+  superset:
+    image: apache/superset:latest
+    container_name: superset
+    ports:
+      - "8088:8088"
+    environment:
+      SUPERSET_SECRET_KEY: another_secure_random_string
+      SUPERSET_DATABASE_URL: 'postgresql+psycopg2://postgres:password@postgres:5432/superset'
+    depends_on:
+      - postgres
+      - redis
+    command:
+      - /bin/sh
+      - -c
+      - |
+        superset fab create-admin --username admin --firstname Superset --lastname Admin --email admin@example.com --password admin && \
+        superset db upgrade && \
+        superset init
+
+  postgres:
+    image: postgres:12
+    container_name: superset_postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Mati@1993
+      POSTGRES_DB: superset
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:6.0-alpine
+    container_name: superset_redis
+    ports:
+      - "6379:6379"
