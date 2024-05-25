@@ -1,6 +1,6 @@
-# src/data_quality_check.py
 import pandas as pd
 
+# Define the DataQualityCheck class
 class DataQualityCheck:
     def __init__(self, data):
         self.data = data
