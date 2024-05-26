@@ -1,7 +1,7 @@
 # !/bin/bash
 set -e
 
-# Function to setup Redash
+# Function to setup Redash & Running Database Migrations
 setup_redash() {
     echo "Setting up Redash..."
     docker-compose -f docker-compose.redash.yml up -d
