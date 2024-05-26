@@ -7,7 +7,7 @@ services:
     environment:
       REDASH_COOKIE_SECRET: some_secure_random_string
       REDASH_SECRET_KEY: another_secure_random_string
-      REDASH_DATABASE_URL: 'postgresql://postgres:password@postgres:5432/redash'
+      REDASH_DATABASE_URL: 'postgresql://postgres:Mati@1993@postgres:5432/bank'
       REDASH_REDIS_URL: 'redis://redis:6379/0'
     ports:
       - "5000:5000"
@@ -21,7 +21,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: Mati@1993
-      POSTGRES_DB: redash
+      POSTGRES_DB: bank
     ports:
       - "5432:5432"
 
